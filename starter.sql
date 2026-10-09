@@ -5,23 +5,22 @@ DECLARE
         SELECT StudentID, StudentName, DepartmentID
         FROM Student;
 
-    v_StudentID Student.StudentID%TYPE;
-    v_StudentName Student.StudentName%TYPE;
-    v_DepartmentID Student.DepartmentID%TYPE;
+    v_id Student.StudentID%TYPE;
+    v_name Student.StudentName%TYPE;
+    v_dept Student.DepartmentID%TYPE;
 
 BEGIN
     OPEN student_cursor;
 
     LOOP
-        FETCH student_cursor
-        INTO v_StudentID, v_StudentName, v_DepartmentID;
+        FETCH student_cursor INTO v_id, v_name, v_dept;
 
         EXIT WHEN student_cursor%NOTFOUND;
 
         DBMS_OUTPUT.PUT_LINE(
-            'StudentID: ' || v_StudentID ||
-            ' StudentName: ' || v_StudentName ||
-            ' DepartmentID: ' || v_DepartmentID
+            'StudentID: ' || v_id ||
+            ' StudentName: ' || v_name ||
+            ' DepartmentID: ' || v_dept
         );
     END LOOP;
 
